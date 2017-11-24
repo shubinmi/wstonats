@@ -17,9 +17,11 @@ type connector struct {
 	toWs        chan []byte
 	toNats      chan []byte
 	natsScanner *bufio.Scanner
+	reqHeader   http.Header
 }
 
 func newConnector(w http.ResponseWriter, r *http.Request) *connector {
+	rHeader := r.Header
 	wsConn, _, _, err := ws.UpgradeHTTP(r, w, nil)
 	if err != nil {
 		writeLog([]byte("Cannot upgrade HTTP to WS errText:"+err.Error()), DebugErr)
@@ -38,6 +40,7 @@ func newConnector(w http.ResponseWriter, r *http.Request) *connector {
 		toWs:        make(chan []byte),
 		toNats:      make(chan []byte),
 		natsScanner: bufio.NewScanner(bufio.NewReader(natsConn)),
+		reqHeader:   rHeader,
 	}
 }
 
@@ -72,7 +75,7 @@ func (c *connector) pullFromWs() {
 		if op != ws.OpText {
 			continue
 		}
-		if proxySetting.Firewall != nil && !proxySetting.Firewall.Allow(msg) {
+		if proxySetting.Firewall != nil && !proxySetting.Firewall.Allow(msg, c.reqHeader) {
 			c.toWs <- []byte("-ERR 'Invalid Subject'\r\n")
 			writeLog([]byte(fmt.Sprintf("MSG not allowed from WS for id:%v with msg:%v", c.id, msg)), DebugInfo)
 			time.Sleep(1 * time.Second)

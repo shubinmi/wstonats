@@ -1,9 +1,12 @@
 package wstonats
 
-import "io"
+import (
+	"io"
+	"net/http"
+)
 
 type MsgFirewall interface {
-	Allow(msg []byte) bool
+	Allow(msg []byte, requestHeader http.Header) bool
 }
 
 type ProxySetting struct {

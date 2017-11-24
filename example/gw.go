@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/shubinmi/wstonats"
+	"net/http"
 )
 
 type logWriter struct{}
@@ -13,7 +14,7 @@ func (w *logWriter) Write(msg []byte) (n int, err error) {
 
 type firewall struct{}
 
-func (f *firewall) Allow(msg []byte) bool {
+func (f *firewall) Allow(msg []byte, requestHeader http.Header) bool {
 	return true
 }
 
