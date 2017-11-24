@@ -20,3 +20,5 @@ func main() {
     wstonats.Start(proxySetting)
 }
 ```
+
+Or see to example folder
