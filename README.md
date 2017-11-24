@@ -8,7 +8,6 @@ Easy way to use NATS EventBus directly on front-end side
 package main
 
 import (
-	"net/http"
 	"github.com/shubinmi/wstonats"
 )
 
