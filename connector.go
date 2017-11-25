@@ -22,6 +22,9 @@ type connector struct {
 
 func newConnector(w http.ResponseWriter, r *http.Request) *connector {
 	rHeader := r.Header
+	rHeader.Add("Remote-Address", r.RemoteAddr)
+
+	r.UserAgent()
 	wsConn, _, _, err := ws.UpgradeHTTP(r, w, nil)
 	if err != nil {
 		writeLog([]byte("Cannot upgrade HTTP to WS errText:"+err.Error()), DebugErr)
