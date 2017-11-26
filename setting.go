@@ -3,6 +3,7 @@ package wstonats
 import (
 	"io"
 	"net/http"
+	"crypto/tls"
 )
 
 type MsgFirewall interface {
@@ -10,11 +11,16 @@ type MsgFirewall interface {
 }
 
 type ProxySetting struct {
-	WsAddr     string
-	NatsAddr   string
-	DebugLevel int
-	LogWriter  io.Writer
-	Firewall   MsgFirewall
+	WsAddr      string
+	WsTls       bool
+	WsTlsCert   string
+	WsTlsKey    string
+	NatsAddr    string
+	NatsTls     bool
+	NatsTlsConf *tls.Config
+	DebugLevel  int
+	LogWriter   io.Writer
+	Firewall    MsgFirewall
 }
 
 const (

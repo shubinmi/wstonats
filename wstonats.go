@@ -31,5 +31,9 @@ func proxyHandler(w http.ResponseWriter, r *http.Request) {
 //noinspection GoUnusedExportedFunction
 func Start(s *ProxySetting) {
 	proxySetting = s
-	log.Fatal(http.ListenAndServe(proxySetting.WsAddr, http.HandlerFunc(proxyHandler)))
+	if s.WsTls {
+		log.Fatal(http.ListenAndServeTLS(proxySetting.WsAddr, s.WsTlsCert, s.WsTlsKey, http.HandlerFunc(proxyHandler)))
+	} else {
+		log.Fatal(http.ListenAndServe(proxySetting.WsAddr, http.HandlerFunc(proxyHandler)))
+	}
 }

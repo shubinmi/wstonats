@@ -8,6 +8,7 @@ import (
 	"github.com/gobwas/ws"
 	"net/http"
 	"time"
+	"crypto/tls"
 )
 
 type connector struct {
@@ -30,7 +31,27 @@ func newConnector(w http.ResponseWriter, r *http.Request) *connector {
 		writeLog([]byte("Cannot upgrade HTTP to WS errText:"+err.Error()), DebugErr)
 		panic(err)
 	}
-	natsConn, err := net.Dial("tcp", proxySetting.NatsAddr)
+
+	natsConnInit := func(useTls bool) net.Conn {
+		switch useTls {
+		case true:
+			conn, err := tls.Dial("tcp", proxySetting.NatsAddr, proxySetting.NatsTlsConf)
+			if err != nil {
+				writeLog([]byte("Cannot connect to NATS errText:"+err.Error()), DebugErr)
+				panic(err)
+			}
+			return conn
+		default:
+			conn, err := net.Dial("tcp", proxySetting.NatsAddr)
+			if err != nil {
+				writeLog([]byte("Cannot connect to NATS errText:"+err.Error()), DebugErr)
+				panic(err)
+			}
+			return conn
+		}
+	}
+	natsConn := natsConnInit(proxySetting.NatsTls)
+
 	if err != nil {
 		writeLog([]byte("Cannot connect to NATS errText:"+err.Error()), DebugErr)
 		panic(err)
