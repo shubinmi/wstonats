@@ -7,7 +7,7 @@ import (
 )
 
 type MsgFirewall interface {
-	Allow(msg []byte, requestHeader http.Header) bool
+	Allow(msg *[]byte, requestHeader http.Header) bool
 }
 
 type ProxySetting struct {

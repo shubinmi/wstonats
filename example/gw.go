@@ -14,7 +14,7 @@ func (w *logWriter) Write(msg []byte) (n int, err error) {
 
 type firewall struct{}
 
-func (f *firewall) Allow(msg []byte, requestHeader http.Header) bool {
+func (f *firewall) Allow(msg *[]byte, requestHeader http.Header) bool {
 	return true
 }
 

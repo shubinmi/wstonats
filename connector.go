@@ -99,7 +99,7 @@ func (c *connector) pullFromWs() {
 		if op != ws.OpText {
 			continue
 		}
-		if proxySetting.Firewall != nil && !proxySetting.Firewall.Allow(msg, c.reqHeader) {
+		if proxySetting.Firewall != nil && !proxySetting.Firewall.Allow(&msg, c.reqHeader) {
 			c.toWs <- []byte("-ERR 'Invalid Subject'\r\n")
 			writeLog([]byte(fmt.Sprintf("MSG not allowed from WS for id:%v with msg:%v", c.id, msg)), DebugInfo)
 			time.Sleep(1 * time.Second)
