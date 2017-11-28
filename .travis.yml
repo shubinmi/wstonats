@@ -8,4 +8,4 @@ go:
 
 before_install:
   - go get github.com/nats-io/gnatsd
-  - gnatsd
+  - gnatsd >> /dev/null &
