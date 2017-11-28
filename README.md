@@ -2,7 +2,17 @@
 
 Easy way to use NATS EventBus directly on front-end side
 
-## How to use
+## Features
+- High performance proxy server
+- TLS support
+- Protect data transfer by using own firewall
+
+## How it works
+
+Use on your front side js library from [here](https://github.com/isobit/websocket-nats)
+See example [here](https://github.com/shubinmi/wstonats/tree/master/example)
+
+## How to implement
 
 ```go
 package main
@@ -21,5 +31,3 @@ func main() {
 	wstonats.Start(proxySetting)
 }
 ```
-
-Or see to example folder
