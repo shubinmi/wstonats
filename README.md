@@ -2,6 +2,8 @@
 
 Easy way to use NATS EventBus directly on front-end side
 
+[![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/shubinmi/salesforce-bulk-api) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php) 
+
 ## Features
 - High performance proxy server
 - TLS support
