@@ -3,16 +3,15 @@ package wstonats
 import (
 	"testing"
 	"github.com/gorilla/websocket"
-	"github.com/shubinmi/wstonats"
 	"strings"
 )
 
 func TestGateWay(t *testing.T) {
-	proxySetting := new(wstonats.ProxySetting)
+	proxySetting := new(ProxySetting)
 	proxySetting.WsAddr = "0.0.0.0:8910"
 	proxySetting.NatsAddr = "0.0.0.0:4222"
-	proxySetting.DebugLevel = wstonats.DebugInfo
-	go wstonats.Start(proxySetting)
+	proxySetting.DebugLevel = DebugInfo
+	go Start(proxySetting)
 
 	wsCon, _, err := websocket.DefaultDialer.Dial("ws://0.0.0.0:8910", nil)
 	if err != nil {
