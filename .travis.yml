@@ -6,7 +6,8 @@ go:
   - 1.8
   - 1.9
 
-before_install:
+before_script:
   - go get github.com/nats-io/gnatsd
   - gnatsd >> /dev/null &
-script: go test -v
+script:
+  - go test
