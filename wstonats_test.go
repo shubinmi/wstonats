@@ -4,6 +4,7 @@ import (
 	"testing"
 	"github.com/gorilla/websocket"
 	"strings"
+	"time"
 )
 
 func TestGateWay(t *testing.T) {
@@ -13,6 +14,7 @@ func TestGateWay(t *testing.T) {
 	proxySetting.DebugLevel = DebugInfo
 	go Start(proxySetting)
 
+	time.Sleep(100 * time.Millisecond)
 	wsCon, _, err := websocket.DefaultDialer.Dial("ws://0.0.0.0:8910", nil)
 	if err != nil {
 		t.Error(err)
