@@ -9,3 +9,4 @@ go:
 before_install:
   - go get github.com/nats-io/gnatsd
   - gnatsd >> /dev/null &
+script: go test -v
