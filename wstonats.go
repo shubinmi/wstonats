@@ -1,8 +1,8 @@
 package wstonats
 
 import (
-	"net/http"
 	"log"
+	"net/http"
 )
 
 var id = 0
@@ -28,7 +28,7 @@ func proxyHandler(w http.ResponseWriter, r *http.Request) {
 	go c.init()
 }
 
-//noinspection GoUnusedExportedFunction
+//Start noinspection GoUnusedExportedFunction
 func Start(s *ProxySetting) {
 	proxySetting = s
 	if s.WsTls {

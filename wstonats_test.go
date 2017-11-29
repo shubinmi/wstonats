@@ -1,9 +1,9 @@
 package wstonats
 
 import (
-	"testing"
 	"github.com/gorilla/websocket"
 	"strings"
+	"testing"
 	"time"
 )
 

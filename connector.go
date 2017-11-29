@@ -1,14 +1,14 @@
 package wstonats
 
 import (
-	"net"
 	"bufio"
+	"crypto/tls"
 	"fmt"
-	"github.com/gobwas/ws/wsutil"
 	"github.com/gobwas/ws"
+	"github.com/gobwas/ws/wsutil"
+	"net"
 	"net/http"
 	"time"
-	"crypto/tls"
 )
 
 type connector struct {
