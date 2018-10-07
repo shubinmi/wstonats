@@ -8,14 +8,15 @@
   revision = "2c6c146eadee0b69f856f87e3e9f1d0cd6aad2f5"
 
 [[projects]]
-  branch = "master"
   name = "github.com/gobwas/pool"
   packages = [
     ".",
+    "internal/pmath",
     "pbufio",
     "pbytes"
   ]
-  revision = "e294a5482d9a8523f8e6b2744ea2185083c838af"
+  revision = "fa3125c39d7eca32e1387bb69b1b38dcb31b1e0b"
+  version = "v0.2.0"
 
 [[projects]]
   branch = "master"
@@ -24,25 +25,25 @@
     ".",
     "wsutil"
   ]
-  revision = "c8595a6266aa8b97b14e7406cf059cd240b34100"
+  revision = "3ecb9262f3cff6da78e01d495fb8442e31263e65"
 
 [[projects]]
   name = "github.com/gorilla/websocket"
   packages = ["."]
-  revision = "ea4d1f681babbce9545c9c5f3d5194a789c89f5b"
-  version = "v1.2.0"
+  revision = "66b9c49e59c6c48f0ffce28c2d8b8a5678502c6d"
+  version = "v1.4.0"
 
 [[projects]]
   branch = "master"
   name = "github.com/shubinmi/wstonats"
   packages = ["."]
-  revision = "4de38c241802481507f1821fefc351c96fba27d2"
+  revision = "5078a5b98fb96d7cbac475487e678401ac88b360"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix"]
-  revision = "378d26f46672a356c46195c28f61bdb4c0a781dd"
+  revision = "4497e2df6f9e69048a54498c7affbbec3294ad47"
 
 [solve-meta]
   analyzer-name = "dep"

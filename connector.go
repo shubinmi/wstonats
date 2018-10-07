@@ -26,7 +26,7 @@ func newConnector(w http.ResponseWriter, r *http.Request) *connector {
 	rHeader.Add("Remote-Address", r.RemoteAddr)
 
 	r.UserAgent()
-	wsConn, _, _, err := ws.UpgradeHTTP(r, w, nil)
+	wsConn, _, _, err := ws.UpgradeHTTP(r, w)
 	if err != nil {
 		writeLog([]byte("Cannot upgrade HTTP to WS errText:"+err.Error()), DebugErr)
 		panic(err)
