@@ -1,11 +1,13 @@
 language: go
 
 go:
-  - 1.9
   - 1.10
+  - 1.11
 
-before_script:
-  - go get github.com/nats-io/gnatsd
-  - gnatsd >> /dev/null &
+#before_script:
+#  - go get github.com/nats-io/gnatsd
+#  - gnatsd >> /dev/null &
 script:
   - go test
+services:
+  - nats
