@@ -4,7 +4,9 @@ go:
   - 1.10
   - 1.11
 
-#before_script:
+before_script:
+  - go get -u github.com/golang/dep/cmd/dep
+  - dep ensure
 #  - go get github.com/nats-io/gnatsd
 #  - gnatsd >> /dev/null &
 script:
