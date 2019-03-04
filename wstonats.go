@@ -14,11 +14,11 @@ func writeLog(msg []byte, level int) {
 		return
 	}
 	if level == DebugErr {
-		proxySetting.LogWriter.Write(append([]byte("[ERR] "), msg...))
+		_, _ = proxySetting.LogWriter.Write(append([]byte("[ERR] "), msg...))
 		return
 	}
 	if proxySetting.DebugLevel == DebugInfo {
-		proxySetting.LogWriter.Write(append([]byte("[INFO] "), msg...))
+		_, _ = proxySetting.LogWriter.Write(append([]byte("[INFO] "), msg...))
 		return
 	}
 }

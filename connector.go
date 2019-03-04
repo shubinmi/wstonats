@@ -71,10 +71,10 @@ func newConnector(w http.ResponseWriter, r *http.Request) *connector {
 func (c *connector) clear() {
 	writeLog([]byte(fmt.Sprintf("Connector closed id:%v", c.id)), DebugInfo)
 	if c.ws != nil {
-		c.ws.Close()
+		_ = c.ws.Close()
 	}
 	if c.nats != nil {
-		c.nats.Close()
+		_ = c.nats.Close()
 	}
 	c.ws = nil
 	c.nats = nil
@@ -117,7 +117,7 @@ func (c *connector) pushToNats() {
 		}
 		msg := <-c.toNats
 		writeLog([]byte(fmt.Sprintf("MSG to NATS for id:%v with msg:%s", c.id, msg)), DebugInfo)
-		c.nats.Write(msg)
+		_, _ = c.nats.Write(msg)
 	}
 }
 
